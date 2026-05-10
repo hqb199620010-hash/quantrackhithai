@@ -141,19 +141,31 @@ def get_data():
 
 scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
 
-# Sử dụng st.secrets để đọc từ Dashboard Streamlit Cloud
+# Khởi tạo client ở phạm vi toàn cục
 try:
     creds = Credentials.from_service_account_info(
         st.secrets["gcp_service_account"], 
         scopes=scope
     )
+    # Tạo biến client ở đây
     client = gspread.authorize(creds)
 except Exception as e:
-    st.error(f"Lỗi kết nối Google Sheets: {e}")
+    st.error(f"Lỗi xác thực Google: {e}")
     st.stop()
 
 # --- 4. LẤY DỮ LIỆU ---
-# Đảm bảo hàm này chỉ chạy SAU KHI client đã được khởi tạo
+def get_data_from_gsheets():
+    try:
+        # Sử dụng biến client đã tạo ở trên
+        sh = client.open_by_key("1X7N5WvYI5yA3kI6W4T_GZ1y3o4v6V9U1e3n2s5t0_XY") # Thay bằng ID thật của bạn
+        worksheet = sh.get_worksheet(0)
+        data = worksheet.get_all_records()
+        return pd.DataFrame(data)
+    except Exception as e:
+        st.error(f"Lỗi đọc bảng tính: {e}")
+        return pd.DataFrame()
+
+# Gọi hàm lấy dữ liệu
 df = get_data_from_gsheets()
         sheet = client.open("QuanTracData_HeThongQuanTrac").sheet1
         data = sheet.get_all_records()
