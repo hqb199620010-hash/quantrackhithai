@@ -159,23 +159,9 @@ st.markdown("""
 # --- 3. HÀM LẤY DỮ LIỆU ---
 def get_data():
     try:
-
-scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-
-# Sử dụng st.secrets để đọc từ Dashboard Streamlit Cloud
-try:
-    creds = Credentials.from_service_account_info(
-        st.secrets["gcp_service_account"], 
-        scopes=scope
-    )
-    client = gspread.authorize(creds)
-except Exception as e:
-    st.error(f"Lỗi kết nối Google Sheets: {e}")
-    st.stop()
-
-# --- 4. LẤY DỮ LIỆU ---
-# Đảm bảo hàm này chỉ chạy SAU KHI client đã được khởi tạo
-df = get_data_from_gsheets()
+        scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+        creds = Credentials.from_service_account_file("creds.json", scopes=scope)
+        client = gspread.authorize(creds)
         sheet = client.open("QuanTracData_HeThongQuanTrac").sheet1
         data = sheet.get_all_records()
         return pd.DataFrame(data)
