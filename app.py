@@ -134,12 +134,10 @@ st.markdown("""
         transition: all 0.3s ease;
     }
     """, unsafe_allow_html=True)
-
 # --- 3. HÀM LẤY DỮ LIỆU ---
 def get_data():
     try:
-
-scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+	scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
 
 # Sử dụng st.secrets để đọc từ Dashboard Streamlit Cloud
 try:
