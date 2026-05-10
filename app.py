@@ -29,13 +29,18 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # --- 3. KẾT NỐI GOOGLE SHEETS (Dùng st.cache để app chạy nhanh hơn) ---
-@st.cache_resource
+# --- 3. KẾT NỐI GOOGLE SHEETS ---
+
+# Kiểm tra Secrets TRƯỚC KHI định nghĩa hàm
 if "gcp_service_account" not in st.secrets:
     st.error("❌ Bạn chưa cấu hình 'gcp_service_account' trong mục Secrets của Streamlit!")
     st.stop()
+
+@st.cache_resource
 def init_connection():
     scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
     try:
+        # Sử dụng đúng tên biến đã đặt trong Secrets
         creds = Credentials.from_service_account_info(
             st.secrets["gcp_service_account"], 
             scopes=scope
@@ -45,10 +50,12 @@ def init_connection():
         st.error(f"Lỗi cấu hình Secrets: {e}")
         return None
 
+# Khởi tạo client
 client = init_connection()
 
 def get_data():
-    if client is None: return pd.DataFrame()
+    if client is None: 
+        return pd.DataFrame()
     try:
         # Mở đúng tên file Google Sheets của bạn
         sheet = client.open("QuanTracData_HeThongQuanTrac").sheet1
