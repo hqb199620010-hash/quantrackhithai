@@ -160,7 +160,10 @@ st.markdown("""
 def get_data():
     try:
         scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-        creds = Credentials.from_service_account_file("creds.json", scopes=scope)
+        creds = Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"], 
+    scopes=scope
+)
         client = gspread.authorize(creds)
         sheet = client.open("QuanTracData_HeThongQuanTrac").sheet1
         data = sheet.get_all_records()
