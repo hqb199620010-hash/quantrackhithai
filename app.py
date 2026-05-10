@@ -138,8 +138,15 @@ st.markdown("""
 # --- 3. HÀM LẤY DỮ LIỆU ---
 def get_data():
     try:
-        scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-        creds = Credentials.from_service_account_file("creds.json", scopes=scope)
+        # --- 3. KẾT NỐI GOOGLE SHEETS ---
+scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+
+# SỬA DÒNG NÀY: Đọc trực tiếp từ Secrets của Streamlit
+creds = Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"], 
+    scopes=scope
+)
+client = gspread.authorize(creds)
         client = gspread.authorize(creds)
         sheet = client.open("QuanTracData_HeThongQuanTrac").sheet1
         data = sheet.get_all_records()
