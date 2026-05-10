@@ -30,6 +30,9 @@ st.markdown("""
 
 # --- 3. KẾT NỐI GOOGLE SHEETS (Dùng st.cache để app chạy nhanh hơn) ---
 @st.cache_resource
+if "gcp_service_account" not in st.secrets:
+    st.error("❌ Bạn chưa cấu hình 'gcp_service_account' trong mục Secrets của Streamlit!")
+    st.stop()
 def init_connection():
     scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
     try:
