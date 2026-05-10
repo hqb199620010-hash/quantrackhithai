@@ -13,168 +13,58 @@ st_autorefresh(interval=30 * 1000, key="datarefresh")
 # --- 2. TÙY CHỈNH GIAO DIỆN (CSS) ---
 st.markdown("""
     <style>
-    /* Nền toàn trang xanh nhạt */
-    .stApp {
-        background-color: #87CEEB;
-    }
-
-    /* Tiêu đề chính */
-    h1 {
-        color: #002D54 !important;
-        font-weight: 850 !important;
-    }
-
-    /* Tag địa chỉ nổi bật */
+    .stApp { background-color: #87CEEB; }
+    h1 { color: #002D54 !important; font-weight: 850 !important; }
     .location-tag {
-        background-color: #003366;
-        color: white !important;
-        padding: 8px 20px;
-        border-radius: 50px;
-        font-weight: bold;
-        display: inline-block;
-        margin-bottom: 25px;
-        box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+        background-color: #003366; color: white !important; padding: 8px 20px;
+        border-radius: 50px; font-weight: bold; display: inline-block;
+        margin-bottom: 25px; box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
     }
-
-	.time-text{
-        background-color: #003366;
-        color: white !important;
-        padding: 8px 20px;
-        border-radius: 50px;
-        font-weight: bold;
-        display: inline-block;
-        margin-bottom: 25px;
-        box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+    .time-text {
+        background-color: #003366; color: white !important; padding: 8px 20px;
+        border-radius: 50px; font-weight: bold; display: inline-block;
+        margin-bottom: 25px; box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
     }
-
-
-
-    /* SỬA LỖI CHỮ TRẮNG/MỜ: ÉP MÀU XANH CHO CÁC TIÊU ĐỀ PHỤ */
-    /* Chúng ta nhắm vào tất cả các cấp độ tiêu đề và div chứa subheader */
-    [data-testid="stSubheader"] h3, 
-    [data-testid="stMarkdownContainer"] h3,
-    .stSubheader h3 {
-        color: #002D54 !important;      /* Màu xanh Navy đậm */
-        opacity: 1 !important;           /* Loại bỏ độ mờ của Streamlit */
-        font-weight: 900 !important;     /* Độ đậm cực cao */
-        font-size: 26px !important;
-        text-transform: uppercase !important;
-        border-left: 6px solid #0056B3 !important;
-        padding-left: 15px !important;
-        display: block !important;
-    }
-
-/* ĐOẠN CODE GIỮ NỀN TRẮNG TUYỆT ĐỐI CHO NHẬT KÝ */
-
-    /* 1. Ép nền trắng cố định cho khung Nhật ký (Expander) ở mọi trạng thái */
-    div[data-testid="stExpander"] {
-        background-color: #FFFFFF !important;
-        border: 1px solid #D1D9E6 !important;
-        border-radius: 12px !important;
-    }
-
-    /* 2. Loại bỏ hiệu ứng đổi màu khi di chuột vào (Hover) và khi click (Active) */
-    div[data-testid="stExpander"]:hover, 
-    div[data-testid="stExpander"]:active,
-    div[data-testid="stExpander"]:focus-within {
-        background-color: #FFFFFF !important;
-        border: 1px solid #0056B3 !important; /* Viền xanh đậm hơn một chút khi tương tác */
-    }
-
-    /* 3. Đảm bảo phần tiêu đề chữ luôn hiển thị rõ trên nền trắng */
-    div[data-testid="stExpander"] summary p {
-        color: #003366 !important;
-        font-weight: bold !important;
-    }
-
-    /* 4. Loại bỏ lớp phủ màu mặc định của Streamlit trên phần Summary */
-    div[data-testid="stExpander"] summary {
-        background-color: transparent !important;
-    }
-    
-    div[data-testid="stExpander"] summary:hover {
-        background-color: transparent !important;
-    }
-/* 1. VẼ KHUNG CHO TẤT CẢ CÁC Ô CHỈ TIÊU (DÙNG CHO MỌI PHIÊN BẢN STREAMLIT) */
-    [data-testid="column"] [data-testid="stMetric"],
-    [data-testid="column"] > div,
-    [data-testid="stMetricContainer"] {
-        background-color: rgba(255, 255, 255, 0.7) !important; 
-        border: 4px solid #002D54 !important; /* KHUNG XANH ĐẬM */
+    [data-testid="stMetric"] {
+        background-color: rgba(255, 255, 255, 0.7) !important;
+        border: 4px solid #002D54 !important;
         padding: 20px !important;
         border-radius: 15px !important;
-        box-shadow: 5px 5px 15px rgba(0,0,0,0.1) !important;
-        display: flex !important;
-        flex-direction: column !important;
-        min-height: 160px !important;
-        margin-bottom: 15px !important;
     }
-
-    /* 2. ĐẢM BẢO CHỮ KHÔNG BỊ TRẮNG/MỜ TRÊN NỀN KHUNG */
-    [data-testid="stMetricLabel"] p {
-        color: #002D54 !important;
-        font-size: 28px !important; 
-        font-weight: 900 !important;
-        text-transform: uppercase !important;
-        line-height: 1.1 !important;
-    }
-
-    [data-testid="stMetricValue"] div,
-    [data-testid="stMetricValue"] {
-        color: #003366 !important;
-        font-size: 40px !important;
-        font-weight: 800 !important;
-    }
-
-    /* 3. HIỆU ỨNG KHI RÊ CHUỘT VÀO Ô */
-    [data-testid="column"] [data-testid="stMetric"]:hover {
-        background-color: #FFFFFF !important;
-        border-color: #0056B3 !important;
-        transform: scale(1.03);
-        transition: all 0.3s ease;
-    }
+    </style>
     """, unsafe_allow_html=True)
 
-# --- 3. HÀM LẤY DỮ LIỆU ---
-def get_data():
-    try:
-
+# --- 3. KẾT NỐI GOOGLE SHEETS ---
 scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
 
-# Khởi tạo client ở phạm vi toàn cục
-try:
-    creds = Credentials.from_service_account_info(
-        st.secrets["gcp_service_account"], 
-        scopes=scope
-    )
-    # Tạo biến client ở đây
-    client = gspread.authorize(creds)
-except Exception as e:
-    st.error(f"Lỗi xác thực Google: {e}")
-    st.stop()
-
-# --- 4. LẤY DỮ LIỆU ---
-def get_data_from_gsheets():
+@st.cache_resource
+def get_gspread_client():
     try:
-        # Sử dụng biến client đã tạo ở trên
-        sh = client.open_by_key("1X7N5WvYI5yA3kI6W4T_GZ1y3o4v6V9U1e3n2s5t0_XY") # Thay bằng ID thật của bạn
-        worksheet = sh.get_worksheet(0)
-        data = worksheet.get_all_records()
-        return pd.DataFrame(data)
+        creds = Credentials.from_service_account_info(
+            st.secrets["gcp_service_account"], 
+            scopes=scope
+        )
+        return gspread.authorize(creds)
     except Exception as e:
-        st.error(f"Lỗi đọc bảng tính: {e}")
-        return pd.DataFrame()
+        st.error(f"Lỗi xác thực Google: {e}")
+        return None
 
-# Gọi hàm lấy dữ liệu
-df = get_data_from_gsheets()
+client = get_gspread_client()
+
+# --- 4. HÀM LẤY DỮ LIỆU ---
+def get_data():
+    if client is None:
+        return pd.DataFrame()
+    try:
+        # Mở bằng tên file chính xác của bạn
         sheet = client.open("QuanTracData_HeThongQuanTrac").sheet1
         data = sheet.get_all_records()
         return pd.DataFrame(data)
     except Exception as e:
-        st.error(f"Lỗi: {e}")
+        st.error(f"Lỗi truy cập bảng tính: {e}")
         return pd.DataFrame()
 
-# --- 4. HIỂN THỊ ---
+# --- 5. HIỂN THỊ GIAO DIỆN ---
 st.title("☁️ CODELCLOUD - MONITORING")
 st.markdown('<div class="location-tag">📍 Khu Công nghiệp Gò Dầu, Long Thành, Đồng Nai</div>', unsafe_allow_html=True)
 
@@ -182,131 +72,24 @@ df = get_data()
 
 if not df.empty:
     latest = df.iloc[-1]
-    update_time = latest.get('Timestamp', 'N/A')
-    st.markdown(f"<div class='time-text'>🕒 Thời gian cập nhật: {latest.get('Timestamp', 'N/A')}</div>", unsafe_allow_html=True)
+    
+    st.markdown(f"<div class='time-text'>🕒 Cập nhật: {latest.get('Timestamp', 'N/A')}</div>", unsafe_allow_html=True)
 
     st.subheader("Main Monitoring")
     c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Opacity", f"{latest['Opacity (%)']}%")
-    c2.metric("Extinction", latest['Extinction'])
-    c3.metric("Dust", f"{latest['Dust (mg/Nm3)']} mg/Nm3")
-    c4.metric("Temp", f"{latest['Temp (C)']} °C")
-
-    st.subheader("Technical Specs")
-    c5, c6, c7, c8 = st.columns(4)
-    c5.metric("DR1", latest['DR1'])
-    c6.metric("DT1", latest['DT1'])
-    c7.metric("DR2", latest['DR2'])
-    c8.metric("DT2", latest['DT2'])
+    c1.metric("Opacity", f"{latest.get('Opacity (%)', 0)}%")
+    c2.metric("Extinction", latest.get('Extinction', 0))
+    c3.metric("Dust", f"{latest.get('Dust (mg/Nm3)', 0)} mg/m3")
+    c4.metric("Temp", f"{latest.get('Temp (C)', 0)} °C")
 
     st.subheader("Environment")
-    c9, c10, c11 = st.columns(3)
-    c9.metric("O2", f"{latest['O2 (%)']}%")
-    c10.metric("Pressure", f"{latest['Pressure (kPa)']} kPa")
-    c11.metric("H2O", f"{latest['H2O (%)']}%")
+    c5, c6, c7 = st.columns(3)
+    c5.metric("O2", f"{latest.get('O2 (%)', 0)}%")
+    c6.metric("Pressure", f"{latest.get('Pressure (kPa)', 0)} kPa")
+    c7.metric("H2O", f"{latest.get('H2O (%)', 0)}%")
 
     st.markdown("---")
-    with st.expander("📝 Nhật ký dữ liệu"):
+    with st.expander("📝 Nhật ký dữ liệu (10 bản ghi gần nhất)"):
         st.dataframe(df.tail(10), use_container_width=True)
 else:
-    st.warning("Đang kết nối dữ liệu...")
-
-
-
-
-import gspread
-from google.oauth2.service_account import Credentials
-import datetime
-import time
-import random
-
-# --- 1. KẾT NỐI GOOGLE SHEETS ---
-scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-creds = Credentials.from_service_account_info(
-    st.secrets["gcp_service_account"], 
-    scopes=scope
-)
-client = gspread.authorize(creds)
-
-try:
-    sheet = client.open("QuanTracData_HeThongQuanTrac").sheet1
-    print("🚀 Trình giả lập đang chạy. Dữ liệu sẽ thay đổi sau mỗi 30 giây...")
-except Exception as e:
-    print(f"❌ Lỗi kết nối Sheets: {e}")
-    exit()
-
-while True:
-    try:
-        now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        
-        # --- 2. TẠO GIÁ TRỊ NGẪU NHIÊN ---
-        
-        # Nhóm bụi và độ đục
-        opacity = round(random.uniform(5.0, 15.0), 2)
-        extinction = round(random.uniform(0.1, 0.8), 4)
-        dust = round(random.uniform(100.0, 200.0), 1)
-        
-        # Nhóm khí phát thải (Dùng số 0 thay chữ O để khớp với App.py của bạn)
-        s02 = round(random.uniform(25.0, 50.0), 2)
-        c0 = round(random.uniform(2.0, 10.0), 2)
-        c02 = round(random.uniform(10.0, 15.0), 2)
-        
-        # Thêm chỉ tiêu mới theo yêu cầu
-        n0 = round(random.uniform(1.0, 9.0), 2)
-        n02 = round(random.uniform(10.0, 30.0), 2)
-        n0x = round(n0 + n02, 2)  # NOx = NO + NO2
-        hcl = round(random.uniform(5.0, 15.0), 2)
-        
-        # Nhóm vật lý
-        temp = round(random.uniform(90.0, 110.0), 1)
-        flow = round(random.uniform(4500, 6000), 0)
-        pressure = round(random.uniform(100, 105), 0)
-        o2 = round(random.uniform(5.0, 8.0), 1)
-        h2o = round(random.uniform(12.0, 15.0), 1)
-        
-        # Thông số kỹ thuật thiết bị
-        dr1 = random.randint(10000, 10100)
-        dt1 = random.randint(10050, 10150)
-        dr2 = random.randint(9900, 10050)
-        dt2 = random.randint(10000, 10100)
-
-        # --- 3. ĐÓNG GÓI DỮ LIỆU ---
-        # Danh sách này phải khớp 100% với số lượng và thứ tự cột trên Google Sheets
-        row = [
-            now,           # Cột A: Timestamp
-            opacity,       # Cột B: Opacity (%)
-            extinction,    # Cột C: Extinction
-            dust,          # Cột D: Dust (mg/Nm3)
-            temp,          # Cột E: Temp (C)
-            flow,          # Cột F: Flow (m3/h)
-            o2,            # Cột G: O2 (%)
-            pressure,      # Cột H: Pressure (kPa)
-            h2o,           # Cột I: H2O (%)
-            s02,           # Cột J: S02 (mg/Nm3)
-            c0,            # Cột K: C0 (mg/Nm3)
-            c02,           # Cột L: C02 (mg/Nm3)
-            n02,           # Cột M: N02 (mg/Nm3)
-            n0x,           # Cột N: N0X (mg/Nm3)
-            0,             # Cột O: Misalignment (%)
-            0,             # Cột P: Delta Opacity (%)
-            "Valid",       # Cột Q: Detector Valid
-            "On",          # Cột R: Plant Status
-            dr1,           # Cột S: DR1
-            dt1,           # Cột T: DT1
-            dr2,           # Cột U: DR2
-            dt2,           # Cột V: DT2
-            hcl,           # Cột W: HCl
-            n0             # Cột X: N0
-        ]
-        
-        # Gửi dữ liệu
-        sheet.append_row(row)
-        
-        # In thông báo ra màn hình (Sửa lỗi f-string)
-        print(f"✅ [{now}] Cập nhật: Dust={dust}, SO2={s02}, NO={n0}, NO2={n02}, NOx={n0x}, HCl={hcl}")
-        
-        # Đợi 30 giây
-        time.sleep(30)
-        
-    except Exception as e:
-        print(f"⚠️ Đang thử lại do lỗi: {e}")
+    st.info("Đang chờ dữ liệu mới từ hệ thống...")
