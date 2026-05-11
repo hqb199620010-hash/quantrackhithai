@@ -191,15 +191,15 @@ if not df.empty:
     c5.metric("H2O", f"{latest['# H2O (%)']}%")
 
 
-    c6.metric("SO2", f"{latest['# S02 (mg/Nm3)']} mg/Nm3")
-    c7.metric("CO", f"{latest['# C0 (mg/Nm3)']} mg/Nm3")
-    c8.metric("CO2", f"{latest['# C02 (mg/Nm3)']} mg/Nm3")
-    c9.metric("NO2", f"{latest['# N02 (mg/Nm3)']} mg/Nm3")
-    c10.metric("NOx", f"{latest['# N0X (mg/Nm3)']} mg/Nm3")
+    c6.metric("SO2", f"{latest['# SO2 (mg/Nm3)']} mg/Nm3")
+    c7.metric("CO", f"{latest['# CO (mg/Nm3)']} mg/Nm3")
+    c8.metric("CO2", f"{latest['# CO2 (mg/Nm3)']} mg/Nm3")
+    c9.metric("NO2", f"{latest['# NO2 (mg/Nm3)']} mg/Nm3")
+    c10.metric("NOx", f"{latest['# NOX (mg/Nm3)']} mg/Nm3")
 
 
     c11.metric("HCl", f"{latest['# HCl']} mg/Nm3")
-    c12.metric("NO", f"{latest['# N0']} mg/Nm3")
+    c12.metric("NO", f"{latest['# NO']} mg/Nm3")
 
     st.markdown("---")
     with st.expander("📝 Nhật ký dữ liệu"):
