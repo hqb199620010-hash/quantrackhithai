@@ -183,14 +183,12 @@ if not df.empty:
     st.caption(f"🕒 Cập nhật: {latest['Timestamp']}")
 
     st.subheader("Main Monitoring")
-    c1, c2, c3, c4, c5 = st.columns(5)
+    c1, c2, c3, c4, c5 = st.columns(4)
     c1.metric("Dust", f"{latest['Dust (mg/Nm3)']} mg/Nm3")
     c2.metric("Temp", f"{latest['Temp (C)']} °C")
 	c3.metric("O2", f"{latest['O2 (%)']}%")
     c4.metric("Pressure", f"{latest['Pressure (kPa)']} kPa")
     c5.metric("H2O", f"{latest['H2O (%)']}%")
-
-
 
     st.markdown("---")
     with st.expander("📝 Nhật ký dữ liệu"):
