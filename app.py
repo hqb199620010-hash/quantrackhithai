@@ -183,7 +183,7 @@ if not df.empty:
 
     st.subheader("Main Monitoring")
     
-    c1, c2, c3, c4, c5 = st.columns(12)
+    c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12 = st.columns(12)
     c1.metric("Dust", f"{latest['# Dust (mg/Nm3)']} mg/Nm3")
     c2.metric("Temp", f"{latest['# Temp (C)']} °C")
     c3.metric("O2", f"{latest['# O2 (%)']}%")
