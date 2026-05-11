@@ -195,7 +195,7 @@ if not df.empty:
     c9.metric("NO2", f"{latest['# N02 (mg/Nm3)']} mg/Nm3")
     c10.metric("NOx", f"{latest['# N0X (mg/Nm3)']} mg/Nm3")
     c11.metric("HCl", f"{latest['# HCl']} mg/Nm3")
-    c12.metric("NO", f"{latest['# N0']} mg/Nm3"
+    c12.metric("NO", f"{latest['# N0']} mg/Nm3")
 
 st.markdown("---")
     with st.expander("📝 Nhật ký dữ liệu"):
