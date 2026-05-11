@@ -170,13 +170,11 @@ def get_data():
         
 if not values:
         return pd.DataFrame()
-            
-        # Tạo DataFrame với hàng đầu tiên làm tiêu đề
-        # pd.DataFrame sẽ tự xử lý nếu có tiêu đề trùng (ví dụ: đặt tên là .1, .2)
+
         df = pd.DataFrame(values[1:], columns=values[0])
         return df
   
-    except Exception as e:
+except Exception as e:
         st.error(f"Lỗi: {e}")
         return pd.DataFrame()
 
