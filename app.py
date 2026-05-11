@@ -177,7 +177,6 @@ st.title("☁️ 5S - SOFTWARE")
 st.markdown('<div class="location-tag">📍 Lô số 7, Khu xử lý chất thải tập trung Tóc Tiên, Xã Châu Pha, Tp Hồ Chí Minh, Việt Nam</div>', unsafe_allow_html=True)
 
 df = get_data()
-
 if not df.empty:
     latest = df.iloc[-1]
     st.caption(f"🕒 Cập nhật: {latest['Timestamp']}")
@@ -197,8 +196,8 @@ if not df.empty:
     c11.metric("HCl", f"{latest['# HCl']} mg/Nm3")
     c12.metric("NO", f"{latest['# N0']} mg/Nm3")
 
-st.markdown("---")
-with st.expander("📝 Nhật ký dữ liệu"):
+ st.markdown("---")
+ with st.expander("📝 Nhật ký dữ liệu"):
         st.dataframe(df.tail(10), use_container_width=True)
 else:
     st.warning("Đang kết nối dữ liệu...")
