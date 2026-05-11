@@ -190,6 +190,7 @@ if not df.empty:
     c4.metric("Pressure", f"{latest['Pressure (kPa)']} kPa")
     c5.metric("H2O", f"{latest['H2O (%)']}%")
 
+
 st.markdown("---")
     with st.expander("📝 Nhật ký dữ liệu"):
         st.dataframe(df.tail(10), use_container_width=True)
