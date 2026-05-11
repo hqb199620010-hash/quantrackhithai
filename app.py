@@ -194,22 +194,22 @@ if not df.empty:
     st.subheader("Main Monitoring")
     
     c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12 = st.columns(12)
-    c1.metric("Dust", f"{latest['# Dust (mg/Nm3)']} mg/Nm3")
-    c2.metric("Temp", f"{latest['# Temp (C)']} °C")
-    c3.metric("O2", f"{latest['# O2 (%)']}%")
-    c4.metric("Pressure", f"{latest['# Pressure (kPa)']} kPa")
-    c5.metric("H2O", f"{latest['# H2O (%)']}%")
+    c1.metric("Dust", f"{latest[' Dust (mg/Nm3)']} mg/Nm3")
+    c2.metric("Temp", f"{latest[' Temp (C)']} °C")
+    c3.metric("O2", f"{latest[' O2 (%)']}%")
+    c4.metric("Pressure", f"{latest[' Pressure (kPa)']} kPa")
+    c5.metric("H2O", f"{latest[' H2O (%)']}%")
 
 
-    c6.metric("SO2", f"{latest['# SO2 (mg/Nm3)']} mg/Nm3")
-    c7.metric("CO", f"{latest['# CO (mg/Nm3)']} mg/Nm3")
-    c8.metric("CO2", f"{latest['# CO2 (mg/Nm3)']} mg/Nm3")
-    c9.metric("NO2", f"{latest['# NO2 (mg/Nm3)']} mg/Nm3")
-    c10.metric("NOx", f"{latest['# NOX (mg/Nm3)']} mg/Nm3")
+    c6.metric("SO2", f"{latest[' SO2 (mg/Nm3)']} mg/Nm3")
+    c7.metric("CO", f"{latest[' CO (mg/Nm3)']} mg/Nm3")
+    c8.metric("CO2", f"{latest[' CO2 (mg/Nm3)']} mg/Nm3")
+    c9.metric("NO2", f"{latest[' NO2 (mg/Nm3)']} mg/Nm3")
+    c10.metric("NOx", f"{latest[' NOX (mg/Nm3)']} mg/Nm3")
 
 
-    c11.metric("HCl", f"{latest['# HCl']} mg/Nm3")
-    c12.metric("NO", f"{latest['# NO']} mg/Nm3")
+    c11.metric("HCl", f"{latest[' HCl']} mg/Nm3")
+    c12.metric("NO", f"{latest[' NO']} mg/Nm3")
 
     st.markdown("---")
     with st.expander("📝 Nhật ký dữ liệu"):
