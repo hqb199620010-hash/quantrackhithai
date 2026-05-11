@@ -173,8 +173,8 @@ def get_data():
         return pd.DataFrame()
 
 # --- 4. HIỂN THỊ ---
-st.title("☁️ CODELCLOUD - DIAGNOSTIC DATA")
-st.markdown('<div class="location-tag">📍 Khu Công nghiệp Gò Dầu, Long Thành, Đồng Nai</div>', unsafe_allow_html=True)
+st.title("☁️ 5S - SOFTWARE")
+st.markdown('<div class="location-tag">📍 Lô số 7, Khu xử lý chất thải tập trung Tóc Tiên, Xã Châu Pha, Tp Hồ Chí Minh, Việt Nam</div>', unsafe_allow_html=True)
 
 df = get_data()
 
@@ -183,24 +183,14 @@ if not df.empty:
     st.caption(f"🕒 Cập nhật: {latest['Timestamp']}")
 
     st.subheader("Main Monitoring")
-    c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Opacity", f"{latest['Opacity (%)']}%")
-    c2.metric("Extinction", latest['Extinction'])
-    c3.metric("Dust", f"{latest['Dust (mg/Nm3)']} mg/Nm3")
-    c4.metric("Temp", f"{latest['Temp (C)']} °C")
+    c1, c2, c3, c4, c5 = st.columns(5)
+    c1.metric("Dust", f"{latest['Dust (mg/Nm3)']} mg/Nm3")
+    c2.metric("Temp", f"{latest['Temp (C)']} °C")
+	c3.metric("O2", f"{latest['O2 (%)']}%")
+    c4.metric("Pressure", f"{latest['Pressure (kPa)']} kPa")
+    c5.metric("H2O", f"{latest['H2O (%)']}%")
 
-    st.subheader("Technical Specs")
-    c5, c6, c7, c8 = st.columns(4)
-    c5.metric("DR1", latest['DR1'])
-    c6.metric("DT1", latest['DT1'])
-    c7.metric("DR2", latest['DR2'])
-    c8.metric("DT2", latest['DT2'])
 
-    st.subheader("Environment")
-    c9, c10, c11 = st.columns(3)
-    c9.metric("O2", f"{latest['O2 (%)']}%")
-    c10.metric("Pressure", f"{latest['Pressure (kPa)']} kPa")
-    c11.metric("H2O", f"{latest['H2O (%)']}%")
 
     st.markdown("---")
     with st.expander("📝 Nhật ký dữ liệu"):
