@@ -198,7 +198,7 @@ if not df.empty:
     c12.metric("NO", f"{latest['# N0']} mg/Nm3")
 
 st.markdown("---")
-    with st.expander("📝 Nhật ký dữ liệu"):
+     with st.expander("📝 Nhật ký dữ liệu"):
         st.dataframe(df.tail(10), use_container_width=True)
 else:
     st.warning("Đang kết nối dữ liệu...")
