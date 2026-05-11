@@ -178,27 +178,27 @@ st.markdown('<div class="location-tag">📍 Lô số 7, Khu xử lý chất 
 
 df = get_data()
 if not df.empty:
-    latest = df.iloc[-1]
-    st.caption(f"🕒 Cập nhật: {latest['Timestamp']}")
+     latest = df.iloc[-1]
+     st.caption(f"🕒 Cập nhật: {latest['Timestamp']}")
 
-    st.subheader("Main Monitoring")
-    c1, c2, c3, c4, c5 = st.columns(5)
-    c1.metric("Dust", f"{latest['Dust (mg/Nm3)']} mg/Nm3")
-    c2.metric("Temp", f"{latest['Temp (C)']} °C")
-    c3.metric("O2", f"{latest['O2 (%)']}%")
-    c4.metric("Pressure", f"{latest['Pressure (kPa)']} kPa")
-    c5.metric("H2O", f"{latest['H2O (%)']}%")
-    c6.metric("SO2", f"{latest['# S02 (mg/Nm3)']} mg/Nm3")
-    c7.metric("CO", f"{latest['# C0 (mg/Nm3)']} mg/Nm3")
-    c8.metric("CO2", f"{latest['# C02 (mg/Nm3)']} mg/Nm3")
-    c9.metric("NO2", f"{latest['# N02 (mg/Nm3)']} mg/Nm3")
-    c10.metric("NOx", f"{latest['# N0X (mg/Nm3)']} mg/Nm3")
-    c11.metric("HCl", f"{latest['# HCl']} mg/Nm3")
-    c12.metric("NO", f"{latest['# N0']} mg/Nm3")
+     st.subheader("Main Monitoring")
+     c1, c2, c3, c4, c5 = st.columns(5)
+     c1.metric("Dust", f"{latest['Dust (mg/Nm3)']} mg/Nm3")
+     c2.metric("Temp", f"{latest['Temp (C)']} °C")
+     c3.metric("O2", f"{latest['O2 (%)']}%")
+     c4.metric("Pressure", f"{latest['Pressure (kPa)']} kPa")
+     c5.metric("H2O", f"{latest['H2O (%)']}%")
+     c6.metric("SO2", f"{latest['# S02 (mg/Nm3)']} mg/Nm3")
+     c7.metric("CO", f"{latest['# C0 (mg/Nm3)']} mg/Nm3")
+     c8.metric("CO2", f"{latest['# C02 (mg/Nm3)']} mg/Nm3")
+     c9.metric("NO2", f"{latest['# N02 (mg/Nm3)']} mg/Nm3")
+     c10.metric("NOx", f"{latest['# N0X (mg/Nm3)']} mg/Nm3")
+     c11.metric("HCl", f"{latest['# HCl']} mg/Nm3")
+     c12.metric("NO", f"{latest['# N0']} mg/Nm3")
 
-st.markdown("---")
-with st.expander("📝 Nhật ký dữ liệu"):
-	st.dataframe(df.tail(10), use_container_width=True)
+  st.markdown("---")
+ with st.expander("📝 Nhật ký dữ liệu"):
+	 st.dataframe(df.tail(10), use_container_width=True)
 else:
 st.warning("Đang kết nối dữ liệu...")
 
