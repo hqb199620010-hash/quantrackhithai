@@ -169,14 +169,14 @@ def get_data():
         values = sheet.get_all_values()
         
 if not values:
-        return pd.DataFrame()
+    return pd.DataFrame()
 
         df = pd.DataFrame(values[1:], columns=values[0])
-        return df
+    return df
   
 except Exception as e:
         st.error(f"Lỗi: {e}")
-        return pd.DataFrame()
+    return pd.DataFrame()
 
 # --- 4. HIỂN THỊ ---
 st.title("☁️ 5S - SOFTWARE")
