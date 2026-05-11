@@ -168,8 +168,8 @@ def get_data():
         sheet = client.open("QuanTracData_HeThongQuanTrac").sheet1
         values = sheet.get_all_values()
         
-    if not values:
-            return pd.DataFrame()
+if not values:
+        return pd.DataFrame()
             
         # Tạo DataFrame với hàng đầu tiên làm tiêu đề
         # pd.DataFrame sẽ tự xử lý nếu có tiêu đề trùng (ví dụ: đặt tên là .1, .2)
