@@ -189,7 +189,7 @@ if not df.empty:
 	c3.metric("O2", f"{latest['O2 (%)']}%")
     c4.metric("Pressure", f"{latest['Pressure (kPa)']} kPa")
     c5.metric("H2O", f"{latest['H2O (%)']}%")
-
+    
 
 st.markdown("---")
     with st.expander("📝 Nhật ký dữ liệu"):
