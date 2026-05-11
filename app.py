@@ -161,22 +161,26 @@ def get_data():
     try:
         scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
         creds = Credentials.from_service_account_info(
-    st.secrets["gcp_service_account"], 
-    scopes=scope
-)
+            st.secrets["gcp_service_account"], 
+            scopes=scope
+        )
         client = gspread.authorize(creds)
         sheet = client.open("QuanTracData_HeThongQuanTrac").sheet1
+        
+        # Lấy toàn bộ giá trị thô thay vì dùng get_all_records() trực tiếp
         values = sheet.get_all_values()
         
-if not values:
-    return pd.DataFrame()
-
+        if not values:
+            return pd.DataFrame()
+            
+        # Tạo DataFrame với hàng đầu tiên làm tiêu đề
+        # pd.DataFrame sẽ tự xử lý nếu có tiêu đề trùng (ví dụ: đặt tên là .1, .2)
         df = pd.DataFrame(values[1:], columns=values[0])
-    return df
+        return df
   
-except Exception as e:
+    except Exception as e:
         st.error(f"Lỗi: {e}")
-    return pd.DataFrame()
+        return pd.DataFrame()
 
 # --- 4. HIỂN THỊ ---
 st.title("☁️ 5S - SOFTWARE")
